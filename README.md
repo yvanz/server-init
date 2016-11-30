@@ -14,5 +14,5 @@ git clone https://github.com/YvanZ/vim-config.git
 
 cd vim-config
 
-./deploy.sh
+sh deploy.sh
 ```
