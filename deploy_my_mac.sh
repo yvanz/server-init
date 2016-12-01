@@ -4,6 +4,13 @@ xcode-select --install
 
 #Install the pip
 sudo easy_install pip
+if [ ! -d ~/.config/pip ];then
+mkdir -p ~/.config/pip
+touch ~/.config/pip/pip.conf
+fi
+echo '[global]' >> ~/.config/pip/pip.conf
+echo 'timeout = 60' >> ~/.config/pip/pip.conf
+echo 'index-url = https://pypi.douban.com/simple' >> ~/.config/pip/pip.conf
 
 #Install the Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
