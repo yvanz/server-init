@@ -34,6 +34,8 @@ sed -i s/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/
 echo "source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" > ~/.zshrc
 
+# 此时ls -al查看文件夹显示无色。需要修改iTerm2: Preferences - Profiles - Text - Text Rendering，将 Draw bold text in bright colors 前面的勾去掉
+
 #Install the Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
