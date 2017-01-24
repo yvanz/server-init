@@ -1,4 +1,7 @@
 #!/bin/bash
+#Change the shell
+chsh -s `which zsh`
+
 #Install the xcode command line tools
 xcode-select --install
 
@@ -16,7 +19,7 @@ echo 'index-url = https://pypi.douban.com/simple' >> ~/.config/pip/pip.conf
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #Install the Powerline
-sudo pip install powerline-status
+pip install --user powerline-status
 
 #Install the fonts of the Powerline
 git clone https://github.com/powerline/fonts.git
@@ -33,5 +36,4 @@ echo "source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" > ~/.zshrc
 
 #Install the Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 
