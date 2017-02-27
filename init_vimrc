@@ -6,35 +6,205 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Bundle 'VundleVim/Vundle.vim'
 
 " Here is the plugin I needed
-Plugin 'vim-syntastic/syntastic'
-Plugin 'elzr/vim-json'
+"自动识别文件编码
+Bundle 'FencView.vim'
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+Bundle 'elzr/vim-json'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['python']
+"显示行末尾的空格
+Bundle 'ShowTrailingWhitespace'
+
+"molokar主题
+Bundle 'molokai'
+
+"在vim 编辑窗口树状显示文件目录
+Bundle 'The-NERD-tree'
+
+"彩色显示配对括号
+Bundle 'rainbow_parentheses.vim'
+
+"查找的时候Tab补全
+Bundle 'SearchComplete'
+
+"强大的代码补全插件
+Bundle 'lalor/snipMate'
+
+"让代码更易于纵向排版
+Bundle 'Tabular'
+
+"粘贴
+Bundle 'YankRing.vim'
+
+"美化状态栏
+Bundle 'Lokaltog/vim-powerline'
+
+"高亮markdown文档
+Bundle 'plasticboy/vim-markdown'
+
+"显示Undo历史"
+Bundle 'sjl/gundo.vim'
+
+"好叼的插件，用以判断是否有语法错误，python代码是否符合PEP8规范
+Bundle 'scrooloose/syntastic'
+
+" 代码搜索
+Bundle 'mileszs/ack.vim'
+
+
+filetype plugin indent on    " required!
+
+
+
+""""""""""""""""""""""
+"colors
+""""""""""""""""""""""
+set t_Co=256
+set background=dark "this line must occur before next line
+colorscheme molokai
+
+
+
+""""""""""""""""""""""
+"some skills
+""""""""""""""""""""""
+
+"replace \ which is default value of leader  with ,
+let mapleader=","
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"some settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""
+"tab setting
+""""""""""""""""""""""
+set tabstop=4 "Tab键的宽度
+set shiftwidth=4 "统一缩进为4"
+set softtabstop=4 ""
+set expandtab "用空格代替Tab"
+
+
+
+""""""""""""""""""""""
+"a few options that just make things better and other settings
+"http://stevelosh.com/blog/2010/09/coming-home-to-vim
+""""""""""""""""""""""
+set listchars=tab:\ \ ,trail:.
+set encoding=utf-8
+"Set Unix as the standard encoding and en_US as the Standard language
+set ffs=unix,dos,mac
+set scrolloff=3 "how many lines to boundary
+set autoindent
+"set to auto read when a file is changed from the outside
+set autoread
+"set smartindent
+set showmode
+set showcmd "回显输入的命令
+set hidden
+set wildmenu
+set wildmode=list:longest
+set visualbell
+set cursorline " 高亮光标所在行
+set ttyfast
+"always dispaly the postion of cursor
+set ruler
+set backspace=indent,eol,start "解除Backspace 的限制
+set laststatus=2
+set relativenumber "显示相对行号
+set undofile "undo file
+"Ignore compiled files
+set wildignore=*.o,*~,*.prc
+"Don't redraw while executing macros
+set lazyredraw
+"get rid of all the crap that vim does to be vi compatible
+set nocompatible
+"prevents some security exploits
+set modelines=0
+
+"No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+"Enable filetype plugins
+filetype plugin on
+filetype indent on
+let &termencoding=&encoding
+set fileencodings=utf-8,gbk,ucs-bom,cp936
+set completeopt=longest,menu
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""plugin""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""
+" NERDTree.vim<F9>
+" """"""""""""""""""""""
+map <F9> :NERDTreeToggle<CR>
+let NERDTreeMinimalUI=0
+let NERDTreeWinPos=1
+
+
+
+
+""""""""""""""""""""""
+" mru.vim
+" """"""""""""""""""""""
+let MRU_Exclude_Files='.*\.vim$'
+map <leader>m :MRU<CR>
+
+
+
+
+""""""""""""""""""""""
+" Powerline.vim
+""""""""""""""""""""""
+let t_Co=256
+set laststatus=2
+let g:Powerline_symbols='unicode'
+
+
+
+
+""""""""""""""""""""""
+" Yankring.vim
+""""""""""""""""""""""
+"ctrl + p
+"ctrl + n
+nnoremap <leader>y :YRShow<CR>
+let g:yankring_history_file = '.my_yankring_history_file'
+
+let g:jedi#use_splits_not_buffers = "bottom"
+let g:ack_default_options= " --color-match=red"
+
 
 " Filetype
 autocmd BufRead,BufNewFile *.json set filetype=json
 "autocmd BufRead,BufNewFile *.cfg set filetype=json
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -44,4 +214,3 @@ filetype plugin indent on    " required
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-" see :h vundle for more details or wiki for FAQ
