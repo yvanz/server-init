@@ -1,5 +1,5 @@
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" BundleInstall
+" PluginInstall
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -11,52 +11,52 @@ call vundle#rc()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Bundle 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " Here is the plugin I needed
 "自动识别文件编码
-Bundle 'FencView.vim'
+Plugin 'FencView.vim'
 
-Bundle 'elzr/vim-json'
+Plugin 'elzr/vim-json'
 
 "显示行末尾的空格
-Bundle 'ShowTrailingWhitespace'
+Plugin 'ShowTrailingWhitespace'
 
 "molokar主题
-Bundle 'molokai'
+Plugin 'molokai'
 
 "在vim 编辑窗口树状显示文件目录
-Bundle 'The-NERD-tree'
+Plugin 'The-NERD-tree'
 
 "彩色显示配对括号
-Bundle 'rainbow_parentheses.vim'
+Plugin 'rainbow_parentheses.vim'
 
 "查找的时候Tab补全
-Bundle 'SearchComplete'
+Plugin 'SearchComplete'
 
 "强大的代码补全插件
-Bundle 'lalor/snipMate'
+Plugin 'lalor/snipMate'
 
 "让代码更易于纵向排版
-Bundle 'Tabular'
+Plugin 'Tabular'
 
 "粘贴
-Bundle 'YankRing.vim'
+Plugin 'YankRing.vim'
 
 "美化状态栏
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-powerline'
 
 "高亮markdown文档
-Bundle 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 
 "显示Undo历史"
-Bundle 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
 
 "好叼的插件，用以判断是否有语法错误，python代码是否符合PEP8规范
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
 " 代码搜索
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 
 
 filetype plugin indent on    " required!
