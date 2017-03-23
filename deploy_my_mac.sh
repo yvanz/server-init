@@ -39,3 +39,11 @@ echo "source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" > ~/.zshrc
 #Install the Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# Install nvm
+shell ./nvm_install.sh
+
+nvm install stable
+
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+cnpm install -g hexo-cli
