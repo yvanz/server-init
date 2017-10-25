@@ -5,6 +5,9 @@ chsh -s `which zsh`
 #Install the xcode command line tools
 xcode-select --install
 
+#Init vim undodir
+mkdir /tmp/undodir
+
 #Install the pip
 sudo easy_install pip
 if [ ! -d ~/.config/pip ];then
@@ -47,3 +50,11 @@ nvm install stable
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 cnpm install -g hexo-cli
+
+# Install wget
+brew install wget
+
+# Install pyenv
+brew install pyenv
+echo "export PYENV_ROOT=/usr/local/Cellar/pyenv" >> ~/.bash_profile
+echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.bash_profile
