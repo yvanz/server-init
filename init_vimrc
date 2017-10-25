@@ -127,7 +127,6 @@ set backspace=indent,eol,start "解除Backspace 的限制
 set laststatus=2
 set relativenumber "显示相对行号
 set undofile "undo file
-set undodir=/tmp/undodir
 "Ignore compiled files
 set wildignore=*.o,*~,*.prc
 "Don't redraw while executing macros
@@ -150,7 +149,14 @@ let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set completeopt=longest,menu
 
-
+""""""""""""""""""""""
+"backup
+""""""""""""""""""""""
+set backup
+set noswapfile
+set undodir=~/.vim/tmp/undo/  "undo files
+set backupdir=~/.vim/tmp/backup/  "backups
+set directory=~/.vim/tmp/swap/  "swap files
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
