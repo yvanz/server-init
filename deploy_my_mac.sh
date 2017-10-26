@@ -6,7 +6,7 @@ chsh -s `which zsh`
 xcode-select --install
 
 #Init vim undodir
-mkdir /tmp/undodir
+mkdir -p ~/.vim/tmp/{undo,backup,swap}
 
 #Install the pip
 sudo easy_install pip
@@ -56,5 +56,5 @@ brew install wget
 
 # Install pyenv
 brew install pyenv
-echo "export PYENV_ROOT=/usr/local/Cellar/pyenv" >> ~/.bash_profile
-echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.bash_profile
+echo "export PYENV_ROOT=/usr/local/Cellar/pyenv" >> ~/.zshrc
+echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.zshrc
