@@ -6,151 +6,227 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 插件管理
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Here is the plugin I needed
 "自动识别文件编码
 Plugin 'FencView.vim'
 
-Plugin 'elzr/vim-json'
-
-"显示行末尾的空格
+" 显示行末尾的空格
 Plugin 'ShowTrailingWhitespace'
 
-"molokar主题
+" molokar主题
 Plugin 'molokai'
 
-"在vim 编辑窗口树状显示文件目录
+"打开最近使用的文件
+Plugin 'mru.vim'
+
+" 在vim 编辑窗口树状显示文件目录
 Plugin 'The-NERD-tree'
 
-"彩色显示配对括号
+" 彩色显示配对括号
 Plugin 'rainbow_parentheses.vim'
 
-"查找的时候Tab补全
+" 查找的时候Tab补全
 Plugin 'SearchComplete'
 
-"强大的代码补全插件
+" 强大的代码补全插件
 Plugin 'lalor/snipMate'
 
-"让代码更易于纵向排版
+" 让代码更易于纵向排版
 Plugin 'Tabular'
 
-"粘贴
+" 代码提示, macOS 原生 vim 无法使用
+Plugin 'davidhalter/jedi-vim'
+
+" 粘贴
 Plugin 'YankRing.vim'
 
-"美化状态栏
+" 美化状态栏
 Plugin 'Lokaltog/vim-powerline'
 
-"高亮markdown文档
+" 高亮markdown文档
 Plugin 'plasticboy/vim-markdown'
 
-"显示Undo历史"
+" 显示Undo历史
 Plugin 'sjl/gundo.vim'
 
-"好叼的插件，用以判断是否有语法错误，python代码是否符合PEP8规范
+" 好叼的插件，用以判断是否有语法错误，python代码是否符合PEP8规范
 Plugin 'scrooloose/syntastic'
 
 " 代码搜索
 Plugin 'mileszs/ack.vim'
 
-
-filetype plugin indent on    " required!
-
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 
 """"""""""""""""""""""
-"colors
+" some skills
+""""""""""""""""""""""
+
+" replace \ which is default value of leader  with ,
+let mapleader=","
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 基础配置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 语法高亮
+syntax on
+
+""""""""""""""""""""""
+" tab setting
+""""""""""""""""""""""
+" Tab键的宽度
+set tabstop=4
+" 统一缩进为4
+set shiftwidth=4
+" 按退格键时可以一次删掉 4 个空格
+set softtabstop=4
+" 用空格代替Tab
+set expandtab
+" 打开自动缩进
+set autoindent
+
+
+""""""""""""""""""""""
+" 配色
 """"""""""""""""""""""
 set t_Co=256
 set background=dark "this line must occur before next line
 colorscheme molokai
 
 
-
 """"""""""""""""""""""
-"some skills
-""""""""""""""""""""""
-
-"replace \ which is default value of leader  with ,
-let mapleader=","
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"some settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-""""""""""""""""""""""
-"tab setting
-""""""""""""""""""""""
-set tabstop=4 "Tab键的宽度
-set shiftwidth=4 "统一缩进为4"
-set softtabstop=4 ""
-set expandtab "用空格代替Tab"
-
-
-
-""""""""""""""""""""""
-"a few options that just make things better and other settings
-"http://stevelosh.com/blog/2010/09/coming-home-to-vim
+" a few options that just make things better and other settings
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim
 """"""""""""""""""""""
 set listchars=tab:\ \ ,trail:.
+" 设置新文件的编码为 UTF-8
 set encoding=utf-8
-"Set Unix as the standard encoding and en_US as the Standard language
+" Set Unix as the standard encoding and en_US as the Standard language
 set ffs=unix,dos,mac
-set scrolloff=3 "how many lines to boundary
-set autoindent
-"set to auto read when a file is changed from the outside
+" 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=3
+" 文件修改之后自动载入
 set autoread
-"set smartindent
+" 左下角显示当前vim模式
 set showmode
-set showcmd "回显输入的命令
-set hidden
+" 在状态栏显示正在输入的命令
+set showcmd
+" 增强模式中的命令行自动完成操作
 set wildmenu
+" A buffer becomes hidden when it is abandoned
+set hidden
 set wildmode=list:longest
-set visualbell
-set cursorline " 高亮光标所在行
 set ttyfast
-"always dispaly the postion of cursor
+" 突出显示当前列
+set cursorcolumn
+" 突出显示当前行
+set cursorline
+" 显示当前的行号列号
 set ruler
-set backspace=indent,eol,start "解除Backspace 的限制
+" 解除 Backspace 的限制
+set backspace=indent,eol,start
+" 命令行（在状态行下）的高度，默认为1，这里是2
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+" 总是显示状态栏，并且使用两行的空间显示
 set laststatus=2
-set relativenumber "显示相对行号
-set undofile "undo file
-"Ignore compiled files
-set wildignore=*.o,*~,*.prc
-"Don't redraw while executing macros
-set lazyredraw
-"get rid of all the crap that vim does to be vi compatible
-set nocompatible
-"prevents some security exploits
-set modelines=0
 
-"No annoying sound on errors
+" 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
+set relativenumber number
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+" 插入模式下用绝对行号, 普通模式下用相对
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+"function! NumberToggle()
+"  if(&relativenumber == 1)
+"    set norelativenumber number
+"  else
+"    set relativenumber
+"  endif
+"endfunc
+"nnoremap <C-n> :call NumberToggle()<cr>
+
+" undo file
+set undofile
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc,*.swp
+" Don't redraw while executing macros
+set lazyredraw
+" get rid of all the crap that vim does to be vi compatible
+set nocompatible
+" prevents some security exploits
+set modelines=0
+" change the terminal's title
+set title
+" 去掉输入错误的提示声音
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
 
-"Enable filetype plugins
+" Remember info about open buffers on close
+set viminfo^=%
+
+set helplang=cn
+
+" Enable filetype plugins
+" 检测文件类型
+filetype on
+" 允许插件
 filetype plugin on
+" 针对不同的文件类型采用不同的缩进格式
 filetype indent on
+" 启动自动补全
+filetype plugin indent on
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
+
+" 自动补全配置
+" 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 set completeopt=longest,menu
 
+" 设置文内智能搜索提示
+" 高亮search命中的文本
+set hlsearch
+" 打开增量搜索模式,随着键入即时搜索
+set incsearch
+" 搜索时忽略大小写
+set ignorecase
+" 有一个或以上大写字母时仍大小写敏感
+set smartcase
+" 禁用搜索高亮
+nnoremap <leader><space> :noh<cr>
+
+
 """"""""""""""""""""""
-"backup
+" show a colored column at 85 characters
+" makes vim handle long lines correctly
+""""""""""""""""""""""
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+set colorcolumn=85
+set autowrite
+
+
+""""""""""""""""""""""
+" backup
 """"""""""""""""""""""
 set backup
 set noswapfile
@@ -159,31 +235,124 @@ set backupdir=~/.vim/tmp/backup/  "backups
 set directory=~/.vim/tmp/swap/  "swap files
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""plugin""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 杂项设置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vimrc文件修改之后自动加载, linux
+autocmd! bufwritepost .vimrc source %
+
+" 打开自动定位到最后编辑的位置, 需要确认 .viminfo 当前用户可写
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" 定义函数AutoSetFileHead，自动插入文件头
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# -*- coding: utf-8 -*-")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+" 分屏窗口移动, Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+
+""""""""""""""""""""""
+" 代码折叠
+""""""""""""""""""""""
+map <space> zi
+set foldmethod=indent
+
+
+""""""""""""""""""""""
+" system clipboard interaction
+""""""""""""""""""""""
+noremap <leader>y "+y
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
+noremap <leader>p "+p
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 插件设置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""
 " NERDTree.vim<F9>
-" """"""""""""""""""""""
+""""""""""""""""""""""
 map <F9> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=0
 let NERDTreeWinPos=1
 
 
+""""""""""""""""""""""
+" gundo.vim
+""""""""""""""""""""""
+nmap <F10> :GundoToggle<CR>
 
 
 """"""""""""""""""""""
 " mru.vim
-" """"""""""""""""""""""
+""""""""""""""""""""""
 let MRU_Exclude_Files='.*\.vim$'
 map <leader>m :MRU<CR>
 
 
+""""""""""""""""""""""
+" rain_bow_parenthese.vim
+""""""""""""""""""""""
+" 自动加载 Rain_bow_parenthese 插件
+au Syntax *  RainbowParenthesesToggleAll
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+
+
+""""""""""""""""""""""
+" Tabular.vim
+""""""""""""""""""""""
+nmap <Leader>i :Tab /
+nmap <Leader>i= :Tab /=<CR>
+vmap <Leader>i= :Tab /=<CR>
+nmap <Leader>i: :Tab /:\zs<CR>
+vmap <Leader>i: :Tab /:\zs<CR>
 
 
 """"""""""""""""""""""
@@ -192,8 +361,6 @@ map <leader>m :MRU<CR>
 let t_Co=256
 set laststatus=2
 let g:Powerline_symbols='unicode'
-
-
 
 
 """"""""""""""""""""""
@@ -208,12 +375,6 @@ let g:jedi#use_splits_not_buffers = "bottom"
 let g:ack_default_options= " --color-match=red"
 
 
-" Filetype
-autocmd BufRead,BufNewFile *.json set filetype=json
-"autocmd BufRead,BufNewFile *.cfg set filetype=json
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
