@@ -49,6 +49,9 @@ Plugin 'Tabular'
 " 代码提示, macOS 原生 vim 无法使用
 Plugin 'davidhalter/jedi-vim'
 
+" Better autocompletion
+Plugin 'Shougo/neocomplcache.vim'
+
 " 粘贴
 Plugin 'YankRing.vim'
 
@@ -66,6 +69,17 @@ Plugin 'scrooloose/syntastic'
 
 " 代码搜索
 Plugin 'mileszs/ack.vim'
+
+" 补全括号等字符
+Plugin 'Townk/vim-autoclose'
+
+" Surround
+Plugin 'tpope/vim-surround'
+
+if has('python')
+    " YAPF formatter for Python
+    Plugin 'pignacio/vim-yapf-format'
+endif "
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -234,7 +248,16 @@ set undodir=~/.vim/tmp/undo/  "undo files
 set backupdir=~/.vim/tmp/backup/  "backups
 set directory=~/.vim/tmp/swap/  "swap files
 
-
+" create needed directories if they don't exist
+if !isdirectory(&backupdir)
+    call mkdir(&backupdir, "p")
+endif
+if !isdirectory(&directory)
+    call mkdir(&directory, "p")
+endif
+if !isdirectory(&undodir)
+    call mkdir(&undodir, "p")
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 杂项设置
@@ -303,6 +326,8 @@ noremap <leader>p "+p
 map <F9> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=0
 let NERDTreeWinPos=1
+" don't show these file types
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 
 """"""""""""""""""""""
@@ -316,6 +341,12 @@ nmap <F10> :GundoToggle<CR>
 """"""""""""""""""""""
 let MRU_Exclude_Files='.*\.vim$'
 map <leader>m :MRU<CR>
+
+
+""""""""""""""""""""""
+" vim-autoclose.vim
+""""""""""""""""""""""
+ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
 
 """"""""""""""""""""""
@@ -373,6 +404,50 @@ let g:yankring_history_file = '.my_yankring_history_file'
 
 let g:jedi#use_splits_not_buffers = "bottom"
 let g:ack_default_options= " --color-match=red"
+
+
+""""""""""""""""""""""
+" Jedi.vim
+""""""""""""""""""""""
+" Go to definition
+let g:jedi#goto_command = ',d'
+" Find ocurrences
+let g:jedi#usages_command = ',o'
+" Find assignments
+let g:jedi#goto_assignments_command = ',a'
+" Go to definition in new tab
+nmap ,D :tab split<CR>:call jedi#goto()<CR>
+
+
+""""""""""""""""""""""
+" Syntastic.vim
+""""""""""""""""""""""
+" show list of errors and warnings on the current file
+nmap <leader>e :Errors<CR>
+" check also when just opened the file
+let g:syntastic_check_on_open = 1
+" don't put icons on the sign column (it hides the vcs status icons of signify)
+let g:syntastic_enable_signs = 0
+
+
+""""""""""""""""""""""
+" neocomplcache.vim
+""""""""""""""""""""""
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_ignore_case = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_fuzzy_completion = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_fuzzy_completion_start_length = 1
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_manual_completion_start_length = 1
+let g:neocomplcache_min_keyword_length = 1
+let g:neocomplcache_min_syntax_length = 1
+" complete with workds from any opened file
+let g:neocomplcache_same_filetype_lists = {}
+let g:neocomplcache_same_filetype_lists._ = '_' "
 
 
 "
