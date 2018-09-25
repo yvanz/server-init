@@ -5,41 +5,29 @@ chsh -s `which zsh`
 #Install the xcode command line tools
 xcode-select --install
 
-#Init vim undodir
-mkdir -p ~/.vim/tmp/{undo,backup,swap}
-
 #Install the pip
-sudo easy_install pip
-if [ ! -d ~/.config/pip ];then
-mkdir -p ~/.config/pip
-touch ~/.config/pip/pip.conf
-fi
-echo '[global]' >> ~/.config/pip/pip.conf
-echo 'timeout = 60' >> ~/.config/pip/pip.conf
-echo 'index-url = https://pypi.douban.com/simple' >> ~/.config/pip/pip.conf
+# easy_install --user pip
 
-#Install the Oh My Zsh
+#Install Oh-My-Zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-#Install the Powerline
-pip install --user powerline-status
+#Install Powerline
+# pip install --user powerline-status
 
 #Install the fonts of the Powerline
-git clone https://github.com/powerline/fonts.git
-sh fonts/install.sh
+# git clone https://github.com/powerline/fonts.git
+# sh fonts/install.sh
 
-#Install the theme called agnoster
-git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
-sh oh-my-zsh-agnoster-fcamblor/install
-sed -i s/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/
+#Install agnoster theme
+# git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
+# sh oh-my-zsh-agnoster-fcamblor/install
 
 #Add the highlighting effect
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/
-echo "source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" > ~/.zshrc
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/Code/
 
 # 此时ls -al查看文件夹显示无色。需要修改iTerm2: Preferences - Profiles - Text - Text Rendering，将 Draw bold text in bright colors 前面的勾去掉
 
-#Install the Homebrew
+#Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Install nvm
@@ -56,5 +44,6 @@ brew install wget
 
 # Install pyenv
 brew install pyenv
-echo "export PYENV_ROOT=/usr/local/Cellar/pyenv" >> ~/.zshrc
-echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.zshrc
+
+# Install mackup
+brew install mackup
