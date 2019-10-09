@@ -23,7 +23,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 # sh oh-my-zsh-agnoster-fcamblor/install
 
 #Add the highlighting effect
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/Code/
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/
 
 # 此时ls -al查看文件夹显示无色。需要修改iTerm2: Preferences - Profiles - Text - Text Rendering，将 Draw bold text in bright colors 前面的勾去掉
 
@@ -44,6 +44,7 @@ brew install wget
 
 # Install pyenv
 brew install pyenv
+brew install pyenv-virtualenv
 
 # Install mackup
 brew install mackup
