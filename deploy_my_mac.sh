@@ -1,6 +1,6 @@
 #!/bin/bash
 #Change the shell
-chsh -s `which zsh`
+chsh -s "$(command -v zsh)"
 
 #Install the xcode command line tools
 xcode-select --install
@@ -30,14 +30,17 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 #Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install nvm
-shell ./nvm_install.sh
+# Install nvs
+export NVS_HOME="$HOME/.nvs"
+git clone https://github.com/jasongin/nvs "$NVS_HOME"
+. "$NVS_HOME/nvs.sh" install
 
-nvm install stable
+nvs remote node https://npm.taobao.org/mirrors/node/
+nvs add lts
+nvs use lts
+nvs link lts
 
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-
-cnpm install -g hexo-cli
+npm install -g hexo-cli
 
 # Install wget
 brew install wget
