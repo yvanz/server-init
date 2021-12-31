@@ -54,3 +54,8 @@ brew install pyenv-virtualenv
 
 # Install mackup
 brew install mackup
+
+# Install Go
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+go env -w GOPATH=~/Code/go_gogo
