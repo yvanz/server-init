@@ -58,6 +58,9 @@ brew install mackup
 # Install cakebrew
 brew install --cask cakebrew
 
+# Install clean me
+brew install --cask clean-me
+
 # Install Go
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
