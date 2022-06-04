@@ -31,7 +31,7 @@ mkdir -p ~/Code/github && git clone https://github.com/dracula/iterm.git ~/Code/
 # 此时ls -al查看文件夹显示无色。需要修改iTerm2: Preferences - Profiles - Text - Text Rendering，将 Draw bold text in bright colors 前面的勾去掉
 
 # Install Homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install nvs
 export NVS_HOME="$HOME/.nvs"
@@ -54,6 +54,9 @@ brew install pyenv-virtualenv
 
 # Install mackup
 brew install mackup
+
+# Install cakebrew
+brew install --cask cakebrew
 
 # Install Go
 go env -w GO111MODULE=on
