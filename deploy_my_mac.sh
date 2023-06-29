@@ -66,3 +66,6 @@ brew install --cask clean-me
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
 go env -w GOPATH=~/Code/go_gogo
+
+# Disable ApplePressAndHoldEnabled for VSCode
+defaults write 'com.microsoft.VSCode' ApplePressAndHoldEnabled -bool false
