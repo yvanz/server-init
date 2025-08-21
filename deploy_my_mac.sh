@@ -39,7 +39,7 @@ export NVS_HOME="$HOME/.nvs"
 git clone https://github.com/jasongin/nvs "$NVS_HOME"
 . "$NVS_HOME/nvs.sh" install
 
-nvs remote node https://npm.taobao.org/mirrors/node/
+nvs remote node https://npmmirror.com/mirrors/node/
 nvs add lts
 nvs use lts
 nvs link lts
@@ -55,9 +55,6 @@ brew install pyenv-virtualenv
 
 # Install mackup
 brew install mackup
-
-# Install cakebrew
-brew install --cask cakebrew
 
 # Install clean me
 brew install --cask clean-me
